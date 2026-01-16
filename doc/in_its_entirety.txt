@@ -1,82 +1,32 @@
-*in_its_entirety.txt*   Operator and visual target for entire buffer
+*in_its_entirety.txt*   Select the entire buffer as an operator target
 
 ==============================================================================
-NVIM-IN-ITS-ENTIRETY                                 *nvim-in-its-entirety*
+Select the entire buffer in visual or operator-pending mode    *in_its_entirety*
 
-A small Neovim plugin that provides a reliable operator- and visual-mode
-target for the entire buffer.
+M.buffer()                                              *in_its_entirety.buffer*
+    Select the entire current buffer.
 
-This plugin exposes a single Lua function that selects the full buffer in a
-way that is compatible with Neovim's operator semantics.
+    This function computes the full buffer range and ensures Neovim
+    ends in Visual mode so that operators apply correctly.
 
-Inspired by vim-textobj-entire:
-https://github.com/kana/vim-textobj-entire
+    It is safe to call from:
+      - Visual mode
+      - Operator-pending mode
 
+    Typical usage:
 
-==============================================================================
-CONTENTS                                              *nvim-in-its-entirety-contents*
-
-  1. Introduction .................. |nvim-in-its-entirety-introduction|
-  2. Installation .................. |nvim-in-its-entirety-installation|
-  3. Usage ......................... |nvim-in-its-entirety-usage|
-  4. API ........................... |nvim-in-its-entirety-api|
-
-
-==============================================================================
-1. Introduction                                       *nvim-in-its-entirety-introduction*
-
-Selecting the entire buffer interactively is trivial (e.g. ggVG), but doing
-so correctly from Lua—especially in operator-pending mode—requires care.
-
-Neovim applies operators only if a mapping terminates in Visual mode.
-This plugin ensures that:
-
-- Visual mode is entered if necessary
-- The selection spans from the first line/column to the true end of the buffer
-- Operators behave as expected when applied to the selection
-
-The plugin is intentionally minimal and does not define mappings by default.
-
-
-==============================================================================
-2. Installation                                       *nvim-in-its-entirety-installation*
-
-Using vim.pack (Neovim 0.12+):
-
-    lua vim.pack.add({ "dotcore64/nvim-in-its-entirety" })
-
-
-==============================================================================
-3. Usage                                              *nvim-in-its-entirety-usage*
-
-Map the entire-buffer selector in operator-pending and visual modes:
-
-    lua << EOF
+    ```lua
     vim.keymap.set(
       { "x", "o" },
       "ae",
-      function() require("in_its_entirety").buffer() end,
+      require("in_its_entirety").buffer,
       { desc = "Entire buffer" }
     )
-    EOF
-
-You can then use:
-
-    vae     visually select the entire buffer
-    dae     delete the entire buffer
-    yae     yank the entire buffer
+    ```
 
 
-==============================================================================
-4. API                                                *nvim-in-its-entirety-api*
-
-buffer()                                              *in_its_entirety.buffer()*
-
-    Selects the entire current buffer.
-
-    This function is intended to be used from operator-pending or visual
-    mode mappings.
+    Returns: ~
+        (nil)
 
 
-==============================================================================
-vim:tw=78:ts=8:ft=help:norl:
+vim:tw=78:ts=8:noet:ft=help:norl:
