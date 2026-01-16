@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: vimcats-docs
+        name: Generate Vim docs with vimcats
+        entry: bash -c 'vimcats -t -f lua/in_its_entirety.lua > doc/in_its_entirety.txt'
+        language: system
+        pass_filenames: false

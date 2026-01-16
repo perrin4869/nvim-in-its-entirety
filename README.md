@@ -86,6 +86,22 @@ dae    " delete entire buffer
 yae    " yank entire buffer
 ```
 
+## Documentation (vimcats)
+
+This plugin uses [vimcats](https://github.com/mhanberg/vimcats) to generate Vim help files directly from Lua annotations.
+
+The help file (`doc/in_its_entirety.txt`) is generated from `lua/in_its_entirety.lua`.
+
+### Installing the pre-commit hook
+
+This repository uses [pre-commit](https://pre-commit.com/) to keep documentation in sync.
+
+Install `pre-commit` (`pipx install pre-commit`), then install the git pre-commit hook for this repository:
+
+```sh
+pre-commit install
+```
+
 ## License
 
 MIT
