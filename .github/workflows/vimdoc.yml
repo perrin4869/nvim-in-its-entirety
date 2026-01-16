@@ -28,7 +28,7 @@ jobs:
         run: vimcats -t -f lua/in_its_entirety.lua > doc/${{env.PLUGIN_NAME}}.txt
 
       - name: Commit
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: ${{ github.head_ref }}
           commit_message: "chore(docs): auto-generate vimdoc"
