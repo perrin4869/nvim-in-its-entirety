@@ -18,8 +18,17 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --check .
+      - name: install neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+      - name: set VIMRUNTIME
+        run: echo "VIMRUNTIME=$(nvim --headless --cmd 'echo $VIMRUNTIME' +q 2>&1)" >> $GITHUB_ENV
       - name: types
         uses: mrcjkb/lua-typecheck-action@v1.1.0
+        env:
+          VIMRUNTIME: ${{ env.VIMRUNTIME }}
         with:
           checklevel: Hint
           directories: |
