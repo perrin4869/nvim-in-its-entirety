@@ -12,17 +12,26 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6
-      - name: install lua
-        uses: leafo/gh-actions-lua@v12
-      - name: install luarocks
-        uses: leafo/gh-actions-luarocks@v6
-      - name: install luacheck
-        run: luarocks install luacheck
-      - name: lint
-        run: luacheck lua
       - name: style
         uses: JohnnyMorganz/stylua-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --check .
+      - name: install neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+      - name: get VIMRUNTIME
+        id: vimruntime
+        run: echo "path=$(nvim --headless --cmd 'echo $VIMRUNTIME' +q 2>&1)" >> $GITHUB_OUTPUT
+      - name: types
+        uses: mrcjkb/lua-typecheck-action@v1.1.0
+        env:
+          VIMRUNTIME: ${{ steps.vimruntime.outputs.path }}
+        with:
+          checklevel: Hint
+          configpath: ".luarc.json"
+          directories: |
+            lua
