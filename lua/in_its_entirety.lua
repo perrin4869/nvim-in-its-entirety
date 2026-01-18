@@ -35,6 +35,8 @@ function M.buffer()
 	local last_line_content = vim.api.nvim_buf_get_lines(buf, end_row, end_row + 1, true)[1] or ''
 	local end_col = math.max(0, #last_line_content)
 
+	local foo = 'omg'
+
 	-- Enter Visual mode if needed.
 	-- Operators only apply if the mapping terminates in Visual mode.
 	local mode = vim.api.nvim_get_mode().mode
