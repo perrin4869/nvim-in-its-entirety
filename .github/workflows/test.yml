@@ -12,17 +12,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6
-      - name: install lua
-        uses: leafo/gh-actions-lua@v12
-      - name: install luarocks
-        uses: leafo/gh-actions-luarocks@v6
-      - name: install luacheck
-        run: luarocks install luacheck
-      - name: lint
-        run: luacheck lua
       - name: style
         uses: JohnnyMorganz/stylua-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --check .
+      - name: types
+        uses: mrcjkb/lua-typecheck-action@v1.1.0
+        with:
+          checklevel: Hint
+          directories: |
+            lua
