@@ -25,6 +25,8 @@ jobs:
           version: stable
       - name: set VIMRUNTIME
         run: echo "VIMRUNTIME=$(nvim --headless --cmd 'echo $VIMRUNTIME' +q 2>&1)" >> $GITHUB_ENV
+      - name: debug
+        run: ls ${{ env.VIMRUNTIME }}
       - name: types
         uses: mrcjkb/lua-typecheck-action@v1.1.0
         env:
