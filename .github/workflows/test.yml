@@ -43,10 +43,12 @@ jobs:
         uses: actions/checkout@v6
       - name: install lua
         uses: leafo/gh-actions-lua@v12
+        with:
+          luaVersion: "5.1.5"
       - name: install luarocks
         uses: leafo/gh-actions-luarocks@v6
       - name: setup luarocks project
-        run: luarocks init --local --lua-version 5.1
+        run: luarocks init --local
       - name: test
         run: |
           eval $(luarocks path) && luarocks test

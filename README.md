@@ -88,17 +88,17 @@ yae    " yank entire buffer
 
 ## Testing
 
-This plugin is setup to use `busted` and `nlua` to run the tests. Ensure you have `luarocks` available in your system, then run
+This plugin is setup to use `busted` together with `nlua` to run its test suite. Ensure that `luarocks` is installed and available on your system, then initialize a local `luarocks` environment and execute the tests:
 
 ```bash
-# hint: run `luarocks config --lua-version 5.1 --local local_by_default true`
-# this avoids having to specify the `--local` flag in the following command
+# Tip: run `luarocks config --lua-version 5.1 --local local_by_default true`
+# to avoid having to pass `--local` to subsequent commands
 luarocks init --local --lua-version 5.1
-eval $(luarocks path)
+eval "$(luarocks path)"
 luarocks test
 ```
 
-Note that it is required to run `eval $(luarocks path)` each time before running the tests in a shell the first time.
+Note that `eval "$(luarocks path)"` must be executed in each new shell session before running the tests so that the local `luarocks` paths are correctly set.
 
 ## Documentation (vimcats)
 
