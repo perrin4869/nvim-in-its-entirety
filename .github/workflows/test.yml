@@ -35,6 +35,7 @@ jobs:
           configpath: ".luarc.json"
           directories: |
             lua
+            spec
 
   test:
     runs-on: ubuntu-24.04
