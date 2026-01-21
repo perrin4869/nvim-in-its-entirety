@@ -56,4 +56,5 @@ jobs:
         run: luarocks init --local
       - name: test
         run: |
-          eval $(luarocks path) && luarocks test
+          eval $(luarocks path)
+          luarocks test
