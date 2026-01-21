@@ -5,7 +5,7 @@
     "path": ["?.lua", "?/init.lua"]
   },
   "workspace": {
-    "library": ["lua", "$VIMRUNTIME"],
+    "library": ["lua", "$VIMRUNTIME", "${3rd}/busted", "${3rd}/luassert"],
     "checkThirdParty": false
   }
 }

@@ -35,3 +35,27 @@ jobs:
           configpath: ".luarc.json"
           directories: |
             lua
+            spec
+
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+      - name: install neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+      - name: install lua
+        uses: leafo/gh-actions-lua@v12
+        with:
+          luaVersion: "5.1.5"
+      - name: install luarocks
+        uses: leafo/gh-actions-luarocks@v6
+      - name: setup luarocks project
+        run: luarocks init --local
+      - name: test
+        run: |
+          eval $(luarocks path)
+          luarocks test
