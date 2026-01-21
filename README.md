@@ -86,6 +86,20 @@ dae    " delete entire buffer
 yae    " yank entire buffer
 ```
 
+## Testing
+
+This plugin is setup to use `busted` and `nlua` to run the tests. Ensure you have `luarocks` available in your system, then run
+
+```bash
+# hint: run `luarocks config --lua-version 5.1 --local local_by_default true`
+# this avoids having to specify the `--local` flag in the following command
+luarocks init --local --lua-version 5.1
+eval $(luarocks path)
+luarocks test
+```
+
+Note that it is required to run `eval $(luarocks path)` each time before running the tests in a shell the first time.
+
 ## Documentation (vimcats)
 
 This plugin uses [vimcats](https://github.com/mhanberg/vimcats) to generate Vim help files directly from Lua annotations.
