@@ -41,6 +41,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6
+      - name: install neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
       - name: install lua
         uses: leafo/gh-actions-lua@v12
         with:
