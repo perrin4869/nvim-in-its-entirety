@@ -1,0 +1,14 @@
+-- .busted
+return {
+	_all = {
+		coverage = false,
+		lpath = 'lua/?.lua;lua/?/init.lua;spec/helpers/?.lua',
+		lua = 'nlua',
+	},
+	default = {
+		verbose = true,
+	},
+	tests = {
+		verbose = true,
+	},
+}
