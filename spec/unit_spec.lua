@@ -71,4 +71,22 @@ describe('unit', function()
 		vim.cmd('normal! <Esc>')
 		require('assertions').assert_linewise()
 	end)
+
+	it('sets the previous context mark', function()
+		local mod = require('in_its_entirety')
+
+		vim.api.nvim_win_set_cursor(0, { 2, 7 })
+		local original = vim.api.nvim_win_get_cursor(0)
+
+		vim.cmd('normal! v')
+		mod.buffer()
+
+		local new_cursor = vim.api.nvim_win_get_cursor(0)
+		local last_line = vim.api.nvim_buf_line_count(0)
+		local last_col = vim.api.nvim_buf_get_lines(0, -2, -1, true)[1]:len()
+		assert.are.same(new_cursor, { last_line, last_col })
+
+		local mark = vim.api.nvim_buf_get_mark(0, "'")
+		assert.are.same(original, mark)
+	end)
 end)

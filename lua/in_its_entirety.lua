@@ -28,6 +28,9 @@ local M = {}
 ---
 ---@return nil
 function M.buffer()
+	-- set previous context mark to work with <C-o>
+	vim.cmd.normal({ "m'", bang = true })
+
 	local buf = 0
 
 	local start_row, start_col = 0, 0

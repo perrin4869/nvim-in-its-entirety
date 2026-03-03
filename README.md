@@ -40,6 +40,7 @@ nvim-in-its-entirety reimplements the core idea in pure Lua, focused on Neovimâ€
   - Visual mode
   - Operator-pending mode
 - Minimal surface area: one function, no dependencies
+- Saves the pevious context mark to allow easy return to the previous position using `<C-o>`
 
 ## Installation
 
